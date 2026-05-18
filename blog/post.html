@@ -105,12 +105,11 @@ article code {
 }
 .post-image.is-right,
 .post-image.is-left {
-  width: min(360px, 100%);
+  width: min(460px, 100%);
 }
-.post-image.is-right { float: right; margin: 0.4rem 0 1rem 1.2rem; }
-.post-image.is-left { float: left; margin: 0.4rem 1.2rem 1rem 0; }
+.post-image.is-right { margin: 1rem 0 1rem auto; }
+.post-image.is-left { margin: 1rem auto 1rem 0; }
 .post-image.is-full { width: 100%; }
-article::after { content: ''; display: block; clear: both; }
 .layout-feature article {
   font-size: 1.07rem;
 }
@@ -125,7 +124,6 @@ article::after { content: ''; display: block; clear: both; }
   main { padding: 1rem; }
   .post-image.is-right,
   .post-image.is-left {
-    float: none;
     margin: 1rem 0;
     width: 100%;
   }
@@ -192,6 +190,17 @@ function applyImageLayouts(root) {
   });
 }
 
+function removeDuplicateMarkdownTitle(body, postTitle) {
+  const first = body.firstElementChild;
+  if (!first || first.tagName !== 'H1') return;
+
+  const mdTitle = (first.textContent || '').trim().toLowerCase();
+  const pageTitle = (postTitle || '').trim().toLowerCase();
+  if (mdTitle && pageTitle && mdTitle === pageTitle) {
+    first.remove();
+  }
+}
+
 function showError(message) {
   document.getElementById('postTitle').textContent = 'Post unavailable';
   document.getElementById('postMeta').textContent = '';
@@ -233,6 +242,7 @@ Promise.all([
       const html = marked.parse(markdown, { gfm: true, breaks: false });
       const body = document.getElementById('postBody');
       body.innerHTML = html;
+      removeDuplicateMarkdownTitle(body, post.title);
       applyImageLayouts(body);
     })
     .catch((err) => showError(err.message));

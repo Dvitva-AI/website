@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Token Economy | Dvitva.ai Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="topbar">
+      <a class="brand" href="../index.html">Dvitva<span>.ai</span></a>
+      <a class="link" href="./index.html">← Back to Blog</a>
+    </nav>
+
+    <header class="hero">
+      <h1>The Token Economy</h1>
+      <p>How to Get Elite LLM Output with Minimal Tokens</p>
+      <div class="article-meta">Summary · 760 words · ~4 min read</div>
+    </header>
+
+    <main class="article-shell">
+      <article class="article">
+        <p class="lead">Most teams overpay for LLMs because they equate more tokens with more intelligence. They do not. Every model has a fixed context window and charges per token in both directions. Every extra paragraph you stuff into a prompt is both a cost line item and a piece of cognitive noise the model has to filter through before it gets to your actual question.</p>
+
+        <figure class="post-image center">
+          <img src="./images/token-discipline-cover.svg" alt="Signal over volume in LLM context design">
+          <figcaption>Elite output comes from signal density, not context bloat.</figcaption>
+        </figure>
+
+        <p>The skill that separates teams shipping reliable AI products from teams stuck in prompt-tuning purgatory is narrower than good prompting. It is maximizing useful signal per token.</p>
+
+        <h2>Start with the right mental model</h2>
+        <p>A token is the smallest chunk of text an AI can read or write, a whole word, part of a word, or even punctuation. Think of your prompt as a pizza: the whole pizza is your message, each slice is a token, and the model eats them one at a time. 100 tokens used just means the AI consumed 100 slices to understand and answer you.</p>
+
+        <p>In production, your typed question is often the smallest part of the bill. Spend is dominated by hidden system and policy prompts, long chat histories re-sent on every turn, and retrieved documents from RAG. Long sessions also force summary compression of old context, which quietly drops useful detail.</p>
+
+        <p>The teams that ship reliable systems treat context windows the way backend engineers treat memory: finite, expensive, and worth managing deliberately.</p>
+
+        <h2>Bigger is not better</h2>
+        <p>Some tokens sharpen intent. Others inject ambiguity, repetition, or filler. In practice, prompt compression often cuts cost dramatically while improving accuracy, because the model spends less capacity sorting noise before reasoning on the task.</p>
+
+        <p>Precision beats volume almost every time.</p>
+
+        <figure class="post-image center">
+          <img src="./images/token-patterns.svg" alt="Five practical patterns for token discipline">
+          <figcaption>Five practical patterns that improve quality while reducing token waste.</figcaption>
+        </figure>
+
+        <h2>What precision looks like: five patterns</h2>
+        <h3>1. Start with one clear line</h3>
+        <p>Example: Goal: refactor this service for testability.</p>
+
+        <h3>2. Add constraints, not fluff</h3>
+        <p>State stack, latency limits, security boundaries, and style rules directly.</p>
+
+        <h3>3. Point to artifacts instead of pasting</h3>
+        <p>Reference the location of code or docs and load only what is needed.</p>
+
+        <h3>4. Ask for structure</h3>
+        <p>Request outputs like plan, patch set, and test list so review cycles are faster.</p>
+
+        <h3>5. Iterate in short loops</h3>
+        <p>Revise a single section instead of restarting with a larger prompt each time.</p>
+
+        <h2>Three tools shifting token economics</h2>
+        <h3>Claude Code</h3>
+        <p>An agentic coding system that reads your codebase, plans across files, edits, runs tests, and iterates. Because context is fetched on demand, your prompt can stay short and constraint-driven. Structured asks reduce both tokens and ambiguity.</p>
+
+        <h3>Aider</h3>
+        <p>A Git-native terminal pair programmer with a repo map, a token-budgeted summary of major classes, functions, and relationships. Commands such as /add and /drop let you decide exactly what stays in context.</p>
+
+        <h3>Cursor Composer</h3>
+        <p>A spec-first workflow where you describe a feature once and receive coordinated multi-file changes with a review-friendly diff. Interaction shifts from line edits to feature-level outcomes.</p>
+
+        <h2>The frontier is smart context selection</h2>
+        <p>Context windows will grow, but bigger windows are not the strategic edge. The edge is selective context systems: repo maps, retrieval, token scoring, and caching that choose the right 0.1 percent of tokens per request.</p>
+
+        <p>Over time, token optimization will feel less like hand-written craft and more like compiler infrastructure: invisible, automated, and critical.</p>
+
+        <p>Elite LLM output does not come from elite token budgets. It comes from elite token discipline. Stop optimizing for volume. Optimize for signal.</p>
+      </article>
+    </main>
+  </div>
+</body>
+</html>

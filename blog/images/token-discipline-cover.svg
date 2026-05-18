@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Token discipline illustration</title>
+  <desc id="desc">Visual showing signal per token emphasis for LLM outputs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f1b2d"/>
+      <stop offset="100%" stop-color="#162c45"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1020" cy="120" r="190" fill="#22d3ee" opacity="0.08"/>
+  <circle cx="190" cy="530" r="220" fill="#7dd3fc" opacity="0.08"/>
+
+  <g transform="translate(90 120)">
+    <rect width="500" height="360" rx="18" fill="#0c1728" stroke="#2b4666"/>
+    <text x="30" y="58" fill="#94a3b8" font-family="Inter, sans-serif" font-size="24">Prompt</text>
+    <text x="30" y="102" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="26" font-weight="600">Goal: Improve checkout reliability</text>
+    <text x="30" y="144" fill="#94a3b8" font-family="Inter, sans-serif" font-size="21">Constraints: p95 &lt; 250ms, no schema changes</text>
+    <text x="30" y="186" fill="#94a3b8" font-family="Inter, sans-serif" font-size="21">Output: plan + patch + tests</text>
+
+    <rect x="30" y="235" width="440" height="16" rx="8" fill="#22344f"/>
+    <rect x="30" y="235" width="382" height="16" rx="8" fill="url(#teal)"/>
+    <text x="30" y="280" fill="#7dd3fc" font-family="Inter, sans-serif" font-size="20">High signal / low token waste</text>
+  </g>
+
+  <g transform="translate(650 150)">
+    <text x="0" y="0" fill="#e2e8f0" font-family="Space Grotesk, sans-serif" font-size="54" font-weight="700">THE TOKEN ECONOMY</text>
+    <text x="0" y="52" fill="#7dd3fc" font-family="Inter, sans-serif" font-size="28">Elite output with minimal tokens</text>
+
+    <g transform="translate(0 110)">
+      <rect width="430" height="68" rx="12" fill="#14253b" stroke="#2f4f72"/>
+      <text x="24" y="42" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="24">More tokens != more intelligence</text>
+    </g>
+
+    <g transform="translate(0 200)">
+      <rect width="430" height="68" rx="12" fill="#14253b" stroke="#2f4f72"/>
+      <text x="24" y="42" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="24">Precision beats volume</text>
+    </g>
+
+    <g transform="translate(0 290)">
+      <rect width="430" height="68" rx="12" fill="#14253b" stroke="#2f4f72"/>
+      <text x="24" y="42" fill="#e2e8f0" font-family="Inter, sans-serif" font-size="24">Optimize for signal-per-token</text>
+    </g>
+  </g>
+</svg>

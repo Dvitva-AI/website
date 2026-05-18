@@ -6,123 +6,7 @@
 <title>Dvitva.ai Blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --navy: #0F1B2D;
-  --navy-light: #162032;
-  --teal: #0891B2;
-  --teal-light: #7DD3FC;
-  --white: #FFFFFF;
-  --slate: #94A3B8;
-  --text: #CBD5E1;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: radial-gradient(circle at top right, rgba(8,145,178,0.12), transparent 35%), var(--navy);
-  color: var(--white);
-}
-.container { width: min(1100px, 92vw); margin: 0 auto; }
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.2rem 0;
-}
-.brand {
-  text-decoration: none;
-  color: var(--white);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-}
-.brand span { color: var(--teal); }
-.topbar a.link {
-  color: var(--slate);
-  text-decoration: none;
-  font-size: 0.95rem;
-}
-header.hero {
-  padding: 2rem 0 2.5rem;
-}
-header.hero h1 {
-  margin: 0;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-}
-header.hero p {
-  margin-top: 0.9rem;
-  color: var(--slate);
-  max-width: 700px;
-  line-height: 1.6;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-  padding-bottom: 4rem;
-}
-.card {
-  background: rgba(22,32,50,0.92);
-  border: 1px solid rgba(125,211,252,0.2);
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.cover {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  background: #fff;
-  padding: 1rem;
-}
-.content {
-  padding: 1rem 1rem 1.2rem;
-}
-.meta {
-  color: var(--slate);
-  font-size: 0.85rem;
-  margin-bottom: 0.5rem;
-}
-.title {
-  margin: 0;
-  font-size: 1.1rem;
-  line-height: 1.4;
-}
-.excerpt {
-  color: var(--text);
-  line-height: 1.55;
-  margin: 0.7rem 0 1rem;
-  font-size: 0.95rem;
-}
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-.tag {
-  border: 1px solid rgba(125,211,252,0.35);
-  color: var(--teal-light);
-  border-radius: 999px;
-  padding: 0.22rem 0.55rem;
-  font-size: 0.72rem;
-}
-.cta {
-  margin-top: 0.9rem;
-  display: inline-block;
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 600;
-}
-.empty {
-  color: var(--slate);
-  border: 1px dashed rgba(148,163,184,0.4);
-  border-radius: 12px;
-  padding: 1rem;
-}
-</style>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <div class="container">
@@ -133,58 +17,25 @@ header.hero p {
 
     <header class="hero">
       <h1>Insights & Build Notes</h1>
-      <p>Publish by adding markdown files in <code>/blog/posts</code> and listing them in <code>/blog/posts.json</code>. Images work directly from markdown.</p>
+      <p>Simple HTML posts with direct control over layout and images. No markdown parser, no runtime rendering layer.</p>
     </header>
 
-    <main id="blogGrid" class="grid" aria-live="polite"></main>
-  </div>
-
-<script>
-function formatDate(iso) {
-  const date = new Date(iso + 'T00:00:00');
-  if (Number.isNaN(date.getTime())) return iso;
-  return date.toLocaleDateString('en-IN', { year: 'numeric', month: 'short', day: 'numeric' });
-}
-
-function renderPosts(posts) {
-  const container = document.getElementById('blogGrid');
-  if (!Array.isArray(posts) || posts.length === 0) {
-    container.innerHTML = '<div class="empty">No posts yet. Add one in <code>/blog/posts</code> and register it in <code>/blog/posts.json</code>.</div>';
-    return;
-  }
-
-  const sorted = [...posts].sort((a, b) => String(b.date).localeCompare(String(a.date)));
-  container.innerHTML = sorted.map((post) => {
-    const tags = Array.isArray(post.tags) ? post.tags : [];
-    const safeTitle = post.title || 'Untitled Post';
-    const safeExcerpt = post.excerpt || '';
-    const safeSlug = encodeURIComponent(post.slug || '');
-    const cover = post.cover || '../logos/dvitva-logo.png';
-
-    return `
+    <main class="grid" aria-live="polite">
       <article class="card">
-        <img class="cover" src="${cover}" alt="${safeTitle}">
+        <img class="cover" src="../logos/edge-logo.png" alt="Enterprise AI Playbook">
         <div class="content">
-          <div class="meta">${formatDate(post.date || '')}</div>
-          <h2 class="title">${safeTitle}</h2>
-          <p class="excerpt">${safeExcerpt}</p>
-          <div class="tags">${tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}</div>
-          <a class="cta" href="post.html?slug=${safeSlug}">Read article →</a>
+          <div class="meta">May 18, 2026</div>
+          <h2 class="title">Enterprise AI Playbook: From PoC to Production</h2>
+          <p class="excerpt">A practical framework for moving from pilots to scalable AI systems with clear ownership, measurable impact, and production reliability.</p>
+          <div class="tags">
+            <span class="tag">Edge</span>
+            <span class="tag">Enterprise AI</span>
+            <span class="tag">Production</span>
+          </div>
+          <a class="cta" href="./enterprise-ai-playbook.html">Read article →</a>
         </div>
       </article>
-    `;
-  }).join('');
-}
-
-fetch('./posts.json')
-  .then((res) => {
-    if (!res.ok) throw new Error('Could not load posts.json');
-    return res.json();
-  })
-  .then(renderPosts)
-  .catch((err) => {
-    document.getElementById('blogGrid').innerHTML = `<div class="empty">${err.message}</div>`;
-  });
-</script>
+    </main>
+  </div>
 </body>
 </html>

@@ -1,35 +1,30 @@
-# Blog Authoring Guide
+# Blog Authoring Guide (HTML)
+
+This blog is now pure HTML for maximum layout control and predictability.
 
 ## Add a new post
 
-1. Create a markdown file in `blog/posts/<slug>.md`.
-2. Add an entry in `blog/posts.json` with:
-   - `slug`
-   - `title`
-   - `date` (`YYYY-MM-DD`)
-   - `excerpt`
-   - `cover` (image path)
-   - `layout` (`standard` or `feature`)
-   - `tags` (array)
+1. Copy `blog/enterprise-ai-playbook.html` to `blog/<new-slug>.html`.
+2. Update title, date, and content in that file.
+3. Add a new card in `blog/index.html` linking to the new file.
 
-## Images in markdown
+## Image layout options
 
-Standard markdown image:
+Use these classes on `<figure>`:
 
-```md
-![My caption](images/my-image.png)
+- Full width: `<figure class="post-image full">`
+- Right aligned: `<figure class="post-image right">`
+- Left aligned: `<figure class="post-image left">`
+
+Example:
+
+```html
+<figure class="post-image right">
+  <img src="../logos/edge-logo.png" alt="Example">
+  <figcaption>Example caption.</figcaption>
+</figure>
 ```
 
-Layout modifiers (append to alt text after `|`):
+## Styling
 
-```md
-![My caption|full](images/hero.png)
-![My caption|right](images/diagram.png)
-![My caption|left](images/diagram.png)
-```
-
-- `full`: full-width image
-- `right`: floating image on right
-- `left`: floating image on left
-
-Use `blog/images/` for post assets, or relative paths like `../logos/...`.
+All shared blog styles live in `blog/styles.css`.
